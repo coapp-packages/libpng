@@ -1,0 +1,53 @@
+#product-info  {
+    product-name: "libpng";
+    version: "1.5.2";
+    original-source-location: "http://sourceforge.net/projects/libpng/files/libpng15/1.5.2/lpng152.zip/download";
+    original-source-website: "http://www.libpng.org/";
+    license: "Custom - see LICENSE for details";
+    packager: "Hamish C";
+}
+
+
+x86 {
+    compiler: vc10-x86;
+     
+    targets: { 
+        "projects\vstudio\Release\libpng15.dll",
+        "projects\vstudio\Release\libpng15.lib",
+        
+    };
+     
+    build-command:@"
+       msbuild /p:Platform=Win32 /p:Configuration=Release projects\vstudio\vstudio.sln
+    ";
+     
+    clean-command:@"
+        pushd projects\vstudio\libpng
+        del /Q *.user  2>NUL
+        rmdir /S /Q Release 2>NUL
+        popd
+        pushd projects\vstudio\pnglibconf
+        del /Q *.user  2>NUL
+        rmdir /S /Q Release 2>NUL
+        popd
+        pushd projects\vstudio\pngtest
+        del /Q *.user  2>NUL
+        rmdir /S /Q Release 2>NUL
+        popd
+        pushd projects\vstudio\pngvalid
+        del /Q *.user  2>NUL
+        rmdir /S /Q Release 2>NUL
+        popd
+        pushd projects\vstudio\zlib
+        del /Q *.user  2>NUL
+        rmdir /S /Q Release 2>NUL
+        popd
+
+        pushd projects\vstudio
+        del /Q *.sdf *.suo *.user  2>NUL
+        rmdir /S /Q Release 2>NUL
+        popd
+
+        del /Q pnglibconf.h  2>NUL
+    ";
+};

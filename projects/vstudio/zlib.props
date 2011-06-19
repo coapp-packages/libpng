@@ -25,6 +25,6 @@
 	 relative to the project directories; these are one level deepers than
 	 the directories containing this file.
      -->
-    <ZLibSrcDir>..\..\..\..\zlib-1.2.4</ZLibSrcDir>
+    <ZLibSrcDir>..\..\..\..\zlib</ZLibSrcDir>
   </PropertyGroup>
 </Project>
