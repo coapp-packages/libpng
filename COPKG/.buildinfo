@@ -10,7 +10,9 @@
 
 x86 {
     compiler: vc10-x86;
-     
+    //doesnt strictly need to build zlib, but the source needs to be there
+    uses: x86=@"..\zlib";
+
     targets: { 
         "projects\vstudio\Release\libpng15.dll",
         "projects\vstudio\Release\libpng15.lib",
