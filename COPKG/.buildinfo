@@ -1,7 +1,7 @@
 #product-info  {
     product-name: "libpng";
-    version: "1.5.2";
-    original-source-location: "http://sourceforge.net/projects/libpng/files/libpng15/1.5.2/lpng152.zip/download";
+    version: "1.5.4";
+    original-source-location: "http://surfnet.dl.sourceforge.net/project/libpng/libpng15/1.5.4/lpng154.zip";
     original-source-website: "http://www.libpng.org/";
     license: "Custom - see LICENSE for details";
     packager: "Hamish C";
