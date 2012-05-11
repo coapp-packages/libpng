@@ -19,11 +19,13 @@ x86 {
     targets: { 
         "projects\vstudio\Release\libpng15.dll",
         "projects\vstudio\Release\libpng15.lib",
+		"projects\vstudio\Release\pngtest.exe",
 		"projects\vstudio\Release\pngvalid.exe",
     };
      
     build-command:@"
        msbuild /p:Platform=Win32 /p:Configuration=Release projects\vstudio\vstudio.sln
+	   simplesigner ""--reference-assembly=zlib[vc10], Version=1.2.5, PublicKeyToken=1e373a58e25250cb, ProcessorArchitecture=x86"" projects\vstudio\Release\libpng15.dll projects\vstudio\Release\pngvalid.exe
     ";
      
     clean-command:@"
@@ -65,6 +67,7 @@ test {
 	uses: release;
 	
 	build-command: @"
+		projects\vstudio\Release\pngtest.exe || goto failed
 		projects\vstudio\Release\pngvalid.exe || goto failed
 	";
 }

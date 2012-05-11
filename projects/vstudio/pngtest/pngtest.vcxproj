@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug Library|Win32">
@@ -99,10 +99,14 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG test program</Message>
-      <Command>"$(OutDir)pngtest.exe" ..\..\..\pngtest.png "$(IntDir)pngout.png"</Command>
-      <Outputs>$(IntDir)pngout.png</Outputs>
-      <Inputs>..\..\..\pngtest.png;$(OutDir)pngtest.exe</Inputs>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+      <Inputs>
+      </Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'">
@@ -167,10 +171,14 @@
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
     <CustomBuildStep>
-      <Message>Executing PNG test program</Message>
-      <Command>"$(OutDir)pngtest.exe" ..\..\..\pngtest.png "$(IntDir)pngout.png"</Command>
-      <Outputs>$(IntDir)pngout.png</Outputs>
-      <Inputs>..\..\..\pngtest.png;$(OutDir)pngtest.exe</Inputs>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
+      <Inputs>
+      </Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'">
