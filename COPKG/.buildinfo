@@ -9,14 +9,17 @@
 
 
 x86 {
-    compiler: vc10-x86;
-    //doesnt strictly need to build zlib, but the source needs to be there
-    uses: x86=@"..\zlib";
+    compiler: vc10;
+	platform: x86;
 
+	requires: {
+		"zlib-dev[vc10]-1.2.5-x86-1e373a58e25250cb",
+	};
+	
     targets: { 
         "projects\vstudio\Release\libpng15.dll",
         "projects\vstudio\Release\libpng15.lib",
-        
+		"projects\vstudio\Release\pngvalid.exe",
     };
      
     build-command:@"
@@ -53,3 +56,15 @@ x86 {
         del /Q pnglibconf.h  2>NUL
     ";
 };
+
+release {
+	uses: x86;
+}
+
+test {
+	uses: release;
+	
+	build-command: @"
+		projects\vstudio\Release\pngvalid.exe || goto failed
+	";
+}
