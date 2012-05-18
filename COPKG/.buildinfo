@@ -1,10 +1,12 @@
+@import "version.inc";
+
 #product-info  {
     product-name: "libpng";
-    version: "1.5.4";
+    version: "${package-version}";
     original-source-location: "http://surfnet.dl.sourceforge.net/project/libpng/libpng15/1.5.4/lpng154.zip";
     original-source-website: "http://www.libpng.org/";
     license: "Custom - see LICENSE for details";
-    packager: "Hamish C";
+    packager: "Hamish C, Vincent Povirk";
 }
 
 
@@ -13,7 +15,7 @@ x86 {
 	platform: x86;
 
 	requires: {
-		"zlib-dev[vc10]-1.2.5-x86-1e373a58e25250cb",
+		"zlib-dev[vc10]-${zlib-dep-version}-x86-${zlib-dep-publickeytoken}",
 	};
 	
     targets: { 
@@ -24,8 +26,10 @@ x86 {
     };
      
     build-command:@"
-       msbuild /p:Platform=Win32 /p:Configuration=Release projects\vstudio\vstudio.sln
-	   simplesigner ""--reference-assembly=zlib[vc10], Version=1.2.5, PublicKeyToken=1e373a58e25250cb, ProcessorArchitecture=x86"" projects\vstudio\Release\libpng15.dll projects\vstudio\Release\pngvalid.exe
+       if ""${BUILT}"" equ ""true"" goto end
+	   msbuild /p:Platform=Win32 /p:Configuration=Release projects\vstudio\vstudio.sln
+	   simplesigner ""--reference-assembly=zlib[vc10], Version=${zlib-dep-version}, PublicKeyToken=${zlib-dep-publickeytoken}, ProcessorArchitecture=x86"" projects\vstudio\Release\pngtest.exe projects\vstudio\Release\pngvalid.exe
+:end
     ";
      
     clean-command:@"
@@ -69,5 +73,23 @@ test {
 	build-command: @"
 		projects\vstudio\Release\pngtest.exe || goto failed
 		projects\vstudio\Release\pngvalid.exe || goto failed
+	";
+}
+
+package {
+	uses: release;
+
+	build-command: @"
+		cd COPKG
+		autopackage libpng.autopkg || goto failed
+	";
+
+	targets: {
+		@"COPKG\libpng[vc10]-${package-version}-x86.msi",
+	};
+
+	clean-command: @"
+		del COPKG\*.msi
+		del COPKG\*.wixpdb
 	";
 }
