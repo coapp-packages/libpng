@@ -82,7 +82,7 @@ package {
 	build-command: @"
 		cd COPKG
 		autopackage libpng-dev-common.autopkg || goto failed
-		autopackage libpng.autopkg || goto failed
+		autopackage libpng.autopkg libpng-dev.autopkg || goto failed
 	";
 
 	targets: {
