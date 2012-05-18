@@ -1,0 +1,49 @@
+@import "version.inc";
+@import "compat.inc";
+@import "outercurve.inc";
+
+package {
+    name: "libpng-dev-common";
+    version: "${package-version}";
+    arch : "any";
+
+    display-name: "libpng-dev-common";
+    location: "http://coapp.org/repository/${OutputFilename}";
+
+    feed: "http://coapp.org/repository/packages.atom.xml";
+    publisher: "CoApp Project";
+}
+
+license[libpng] {
+	license: @"..\LICENSE";
+	license-url: "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt";
+	license-type: "libpng";
+}
+
+metadata {  
+    summary: "libpng";
+    description: @"libpng is a library for reading and writing PNG images.";
+    author-version : "${author-version}";
+    bug-tracker: "https://github.com/coapp-packages/libpng/issues";
+    stability : "0";
+    licenses : {
+        libpng
+    };
+}
+
+developer-library[libpng15] {
+    headers: {
+        headers
+    };
+}
+
+files[headers] {
+    root: @"..";
+    include: {
+        "png.h",
+		"pngconf.h",
+		"pnglibconf.h",
+    };
+
+    trim-path:minimal;
+}

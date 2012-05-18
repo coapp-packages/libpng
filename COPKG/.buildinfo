@@ -81,11 +81,13 @@ package {
 
 	build-command: @"
 		cd COPKG
+		autopackage libpng-dev-common.autopkg || goto failed
 		autopackage libpng.autopkg || goto failed
 	";
 
 	targets: {
 		@"COPKG\libpng[vc10]-${package-version}-x86.msi",
+		@"COPKG\libpng-dev-common-${package-version}-any.msi",
 	};
 
 	clean-command: @"
