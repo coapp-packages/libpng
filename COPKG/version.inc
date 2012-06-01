@@ -1,6 +1,6 @@
-#define { package-version: 1.5.4.1; }
+#define { package-version: 1.5.10.1; }
 
-#define { author-version: 1.5.4; }
+#define { author-version: 1.5.10; }
 
 #define { outercurve-publickeytoken: "1e373a58e25250cb"; }
 

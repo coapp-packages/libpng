@@ -3,7 +3,7 @@
 #product-info  {
     product-name: "libpng";
     version: "${package-version}";
-    original-source-location: "http://surfnet.dl.sourceforge.net/project/libpng/libpng15/1.5.4/lpng154.zip";
+    original-source-location: "ftp://ftp.simplesystems.org/pub/libpng/png/src/lpng1510.zip";
     original-source-website: "http://www.libpng.org/";
     license: "Custom - see LICENSE for details";
     packager: "Hamish C, Vincent Povirk";
