@@ -43,7 +43,7 @@ metadata {
 signing {
     attributes : {
         company="Outercurve Foundation",
-        description="Description of MyPackage",
+        description="libpng is a library for reading and writing PNG images.",
         product-name="libpng",
         product-version="${package-version}",
         file-version="${package-version}",
