@@ -1,4 +1,9 @@
 @import "version.inc";
+@import "common.inc";
+
+#define {
+    NewVersion : "${package-version++}";
+}
 
 #product-info  {
     product-name: "libpng";
@@ -80,18 +85,34 @@ package {
 	uses: release;
 
 	build-command: @"
+        if ""${noversion}"" neq ""true"" ptk update-version
 		cd COPKG
 		autopackage libpng-dev-common.autopkg || goto failed
 		autopackage libpng.autopkg libpng-dev.autopkg || goto failed
 	";
 
 	targets: {
-		@"COPKG\libpng[vc10]-${package-version}-x86.msi",
-		@"COPKG\libpng-dev-common-${package-version}-any.msi",
+		@"COPKG\libpng[vc10]-${NewVersion}-x86.msi",
+		@"COPKG\libpng-dev[vc10]-${NewVersion}-x86.msi",
+		@"COPKG\libpng-dev-common-${NewVersion}-any.msi",
 	};
 
 	clean-command: @"
 		del COPKG\*.msi
 		del COPKG\*.wixpdb
 	";
+}
+
+update-version {
+    default : false;
+    
+    build-command : @"
+        REM auto-increment version.inc file...
+        
+        pushd COPKG
+        setlocal EnableDelayedExpansion
+        set VERSTRING=#define { package-version: ${NewVersion}; }
+        echo !VERSTRING! > version.inc
+        popd
+    ";
 }

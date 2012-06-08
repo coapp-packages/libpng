@@ -1,6 +1,7 @@
 @import "version.inc";
 @import "compat.inc";
 @import "outercurve.inc";
+@import "common.inc";
 
 package {
     name: "libpng-dev-common";
