@@ -6,6 +6,7 @@
 #define { 
     flavor: "${comp??vc10}"; 
     arch : "${plat??x86}";
+	outputdir : @"..\${outdir??projects\vstudio\Release}";
 }
 
 package {
@@ -73,7 +74,7 @@ assembly[libpng[${flavor}]] {
 }
 
 files[dlls] {
-    root: @"..\projects\vstudio\Release\";
+    root: @"${outputdir}";
 
     include: {
         "libpng15.dll",

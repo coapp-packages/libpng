@@ -3,6 +3,15 @@
 
 #define {
     NewVersion : "${package-version++}";
+	platforms : {
+		x86, x64
+	};
+	OutputDir-x86 : @"projects\vstudio\Release";
+	OutputDir-x64 : @"projects\vstudio\x64\Release";
+	BuildDir-x86 : @"Release";
+	BuildDir-x64 : @"x64";
+	VCPlatform-x86 : "Win32";
+	VCPlatform-x64 : "x64";
 }
 
 #product-info  {
@@ -15,92 +24,184 @@
 }
 
 
-x86 {
+build-common {
     compiler: vc10;
-	platform: x86;
+	platform: "${PLAT}";
 
 	requires: {
-		"zlib-dev[vc10]-${zlib-dep-version}-x86-${zlib-dep-publickeytoken}",
+		"zlib-dev[vc10]-${zlib-dep-version}-${PLAT}-${zlib-dep-publickeytoken}",
 	};
 	
     targets: { 
-        "projects\vstudio\Release\libpng15.dll",
-        "projects\vstudio\Release\libpng15.lib",
-		"projects\vstudio\Release\pngtest.exe",
-		"projects\vstudio\Release\pngvalid.exe",
+        @"${OutputDir}\libpng15.dll",
+        @"${OutputDir}\libpng15.lib",
+		@"${OutputDir}\pngtest.exe",
+		@"${OutputDir}\pngvalid.exe",
     };
      
     build-command:@"
        if ""${BUILT}"" equ ""true"" goto end
-	   msbuild /p:Platform=Win32 /p:Configuration=Release projects\vstudio\vstudio.sln
-	   simplesigner ""--reference-assembly=zlib[vc10], Version=${zlib-dep-version}, PublicKeyToken=${zlib-dep-publickeytoken}, ProcessorArchitecture=x86"" projects\vstudio\Release\pngtest.exe projects\vstudio\Release\pngvalid.exe
+	   msbuild /p:Platform=${VCPlatform} /p:Configuration=Release projects\vstudio\vstudio.sln
+	   simplesigner ""--reference-assembly=zlib[vc10], Version=${zlib-dep-version}, PublicKeyToken=${zlib-dep-publickeytoken}, ProcessorArchitecture=${PLAT}"" ${OutputDir}\pngtest.exe ${OutputDir}\pngvalid.exe
 :end
     ";
      
     clean-command:@"
+		rmdir /S /Q ""${OutputDir}"" 2>NUL
+
         pushd projects\vstudio\libpng
         del /Q *.user  2>NUL
-        rmdir /S /Q Release 2>NUL
+        rmdir /S /Q ${BuildDir} 2>NUL
         popd
         pushd projects\vstudio\pnglibconf
         del /Q *.user  2>NUL
-        rmdir /S /Q Release 2>NUL
+        rmdir /S /Q ${BuildDir} 2>NUL
         popd
         pushd projects\vstudio\pngtest
         del /Q *.user  2>NUL
-        rmdir /S /Q Release 2>NUL
+        rmdir /S /Q ${BuildDir} 2>NUL
         popd
         pushd projects\vstudio\pngvalid
         del /Q *.user  2>NUL
-        rmdir /S /Q Release 2>NUL
+        rmdir /S /Q ${BuildDir} 2>NUL
         popd
         pushd projects\vstudio\zlib
         del /Q *.user  2>NUL
-        rmdir /S /Q Release 2>NUL
+        rmdir /S /Q ${BuildDir} 2>NUL
         popd
 
         pushd projects\vstudio
         del /Q *.sdf *.suo *.user  2>NUL
-        rmdir /S /Q Release 2>NUL
         popd
 
         del /Q pnglibconf.h  2>NUL
     ";
 };
 
+build-x86 {
+	uses: build-common;
+	set : {
+		PLAT=x86;
+		OutputDir = "${OutputDir-x86}";
+		BuildDir = "${BuildDir-x86}";
+		VCPlatform = "${VCPlatform-x86}";
+	};
+}
+
+build-x64 {
+	uses: build-common;
+	set : {
+		PLAT=x64;
+		OutputDir = "${OutputDir-x64}";
+		BuildDir = "${BuildDir-x64}";
+		VCPlatform = "${VCPlatform-x64}";
+	};
+}
+
 release {
-	uses: x86;
+	uses: {
+		platforms => "build-${each}";
+	}
+}
+
+test-common {
+	build-command: @"
+		${OutputDir}\pngtest.exe || goto failed
+		${OutputDir}\pngvalid.exe || goto failed
+	";
+}
+
+test-x86 {
+	uses: test-common;
+	set : {
+		PLAT=x86;
+		OutputDir = "${OutputDir-x86}";
+	};
+}
+
+test-x64 {
+	uses: test-common;
+	set : {
+		PLAT=x64;
+		OutputDir = "${OutputDir-x64}";
+	};
 }
 
 test {
 	uses: release;
-	
+	uses: {
+		platforms => "test-${each}";
+	}
+}
+
+maybe-update-version {
 	build-command: @"
-		projects\vstudio\Release\pngtest.exe || goto failed
-		projects\vstudio\Release\pngvalid.exe || goto failed
+        if ""${noversion}"" neq ""true"" ptk update-version
 	";
 }
 
-package {
-	uses: release;
-
-	build-command: @"
-        if ""${noversion}"" neq ""true"" ptk update-version
-		cd COPKG
-		autopackage libpng-dev-common.autopkg || goto failed
-		autopackage libpng.autopkg libpng-dev.autopkg || goto failed
-	";
-
+package-any {
 	targets: {
-		@"COPKG\libpng[vc10]-${NewVersion}-x86.msi",
-		@"COPKG\libpng-dev[vc10]-${NewVersion}-x86.msi",
 		@"COPKG\libpng-dev-common-${NewVersion}-any.msi",
 	};
 
-	clean-command: @"
-		del COPKG\*.msi
-		del COPKG\*.wixpdb
+	build-command: @"
+		cd COPKG
+		autopackage libpng-dev-common.autopkg || goto failed
 	";
+
+	clean-command: @"
+		del COPKG\libpng-dev-common-*-any.msi
+		del COPKG\libpng-dev-common-*-any.wixpdb
+	";
+};
+
+package-common {
+	targets: {
+		@"COPKG\libpng[vc10]-${NewVersion}-${PLAT}.msi",
+		@"COPKG\libpng-dev[vc10]-${NewVersion}-${PLAT}.msi",
+	};
+
+	build-command: @"
+		cd COPKG
+		autopackage --plat=${PLAT} --outdir=${OutputDir} libpng.autopkg libpng-dev.autopkg || goto failed
+	";
+
+	clean-command: @"
+		del COPKG\libpng*[vc10]-*-${PLAT}.msi
+		del COPKG\libpng*[vc10]-*-${PLAT}.wixpdb
+	";
+}
+
+package-x86 {
+	uses: package-common;
+	set : {
+		PLAT=x86;
+		OutputDir = "${OutputDir-x86}";
+	};
+}
+
+package-x64 {
+	uses: package-common;
+	set : {
+		PLAT=x64;
+		OutputDir = "${OutputDir-x64}";
+	};
+}
+
+package-arches {
+	uses: {
+		platforms => "package-${each}";
+	}
+}
+
+package {
+	uses: {
+		release,
+		maybe-update-version,
+		package-any,
+		package-arches
+	}
 }
 
 update-version {
