@@ -6,6 +6,7 @@
 #define { 
     flavor: "${comp??vc10}"; 
     arch : "${plat??x86}";
+	outputdir : @"..\${outdir??projects\vstudio\Release}";
 }
 
 package {
@@ -49,7 +50,7 @@ developer-library[libpng15[${flavor}]] {
 }
 
 files[libs] {
-    root: @"..\projects\vstudio\Release\";
+    root: @"${outputdir}";
 
     include: {
         "libpng15.lib",
