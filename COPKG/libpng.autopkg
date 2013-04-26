@@ -1,0 +1,128 @@
+@import @"version.inc";
+
+nuget {
+	nuspec {
+		id = libpng;
+		version : ${package-version};
+		title: libpng;
+		authors: {Guy Eric Schalnat, Andreas Dilger, John Bowler, Glenn Randers-Pehrson, libpng contributors, Vincent Povirk};
+		owners: {CoApp Project, Vincent Povirk};
+		licenseUrl: "http://www.libpng.org/pub/png/src/libpng-LICENSE.txt";
+		projectUrl: "http://github.com/coapp-packages/libpng";
+		iconUrl: "http://www.libpng.org/pub/png/img_png/pnglogo-blk.jpg";
+		requireLicenseAcceptance:false;
+		summary: "libpng is a library for reading and writing PNG images.";
+		description: @"libpng is a library for reading and writing PNG images.
+Homepage: http://www.libpng.org/pub/png/libpng.html";
+		releaseNotes: "Release of libpng 1.5.10 libraries.";
+		copyright: Copyright 2013;
+		tags: { png, native, CoApp };
+
+	};
+
+	files {
+		include: {
+			..\png.h,
+			..\pngconf.h,
+			..\pnglibconf.h,
+			};
+
+		docs: { ..\libpng-manual.txt };
+
+		source += {
+			..\*.c,
+			..\*.h,
+		};
+
+		[Win32,v110,dynamic,release] {
+			lib: { ..\projects\vstudio\v110\win32\Release\libpng15.lib };
+			bin: { ..\projects\vstudio\v110\win32\Release\libpng15.dll };
+			symbols: { ..\projects\vstudio\v110\win32\Release\libpng15.pdb };
+		}
+    
+		[Win32,v100,dynamic,release] {
+			lib: { ..\projects\vstudio\v100\win32\Release\libpng15.lib };
+			bin: { ..\projects\vstudio\v100\win32\Release\libpng15.dll };
+			symbols: { ..\projects\vstudio\v100\win32\Release\libpng15.pdb };
+		}
+    
+		[x64,v110,dynamic,release] {
+			lib: { ..\projects\vstudio\v110\x64\Release\libpng15.lib };
+			bin: { ..\projects\vstudio\v110\x64\Release\libpng15.dll };
+			symbols: { ..\projects\vstudio\v110\x64\Release\libpng15.pdb };
+		}
+    
+		[x64,v100,dynamic,release] {
+			lib: { ..\projects\vstudio\v100\x64\Release\libpng15.lib };
+			bin: { ..\projects\vstudio\v100\x64\Release\libpng15.dll };
+			symbols: { ..\projects\vstudio\v100\x64\Release\libpng15.pdb };
+		}
+    
+		[Win32,v110,static,release] {
+			lib: { ..\projects\vstudio\v110\win32\Release Library\libpng15.lib };
+		}
+    
+		[Win32,v100,static,release] {
+			lib: { ..\projects\vstudio\v100\win32\Release Library\libpng15.lib };
+		}
+    
+		[x64,v110,static,release] {
+			lib: { ..\projects\vstudio\v110\x64\Release Library\libpng15.lib };
+		}
+    
+		[x64,v100,static,release] {
+			lib: { ..\projects\vstudio\v100\x64\Release Library\libpng15.lib };
+		}
+
+		[Win32,v110,dynamic,debug] {
+			lib: { ..\projects\vstudio\v110\win32\Debug\libpng15.lib };
+			bin: { ..\projects\vstudio\v110\win32\Debug\libpng15.dll };
+			symbols: { ..\projects\vstudio\v110\win32\Debug\libpng15.pdb };
+		}
+    
+		[Win32,v100,dynamic,debug] {
+			lib: { ..\projects\vstudio\v100\win32\Debug\libpng15.lib };
+			bin: { ..\projects\vstudio\v100\win32\Debug\libpng15.dll };
+			symbols: { ..\projects\vstudio\v100\win32\Debug\libpng15.pdb };
+		}
+    
+		[x64,v110,dynamic,debug] {
+			lib: { ..\projects\vstudio\v110\x64\Debug\libpng15.lib };
+			bin: { ..\projects\vstudio\v110\x64\Debug\libpng15.dll };
+			symbols: { ..\projects\vstudio\v110\x64\Debug\libpng15.pdb };
+		}
+    
+		[x64,v100,dynamic,debug] {
+			lib: { ..\projects\vstudio\v100\x64\Debug\libpng15.lib };
+			bin: { ..\projects\vstudio\v100\x64\Debug\libpng15.dll };
+			symbols: { ..\projects\vstudio\v100\x64\Debug\libpng15.pdb };
+		}
+    
+		[Win32,v110,static,debug] {
+			lib: { ..\projects\vstudio\v110\win32\Debug Library\libpng15.lib };
+		}
+    
+		[Win32,v100,static,debug] {
+			lib: { ..\projects\vstudio\v100\win32\Debug Library\libpng15.lib };
+		}
+    
+		[x64,v110,static,debug] {
+			lib: { ..\projects\vstudio\v110\x64\Debug Library\libpng15.lib };
+		}
+    
+		[x64,v100,static,debug] {
+			lib: { ..\projects\vstudio\v100\x64\Debug Library\libpng15.lib };
+		}
+	};
+
+	dependencies {
+		packages : {
+			zlib/1.2.7.32
+		};
+	}
+
+	targets {
+		Defines += HAS_LIBPNG;
+	};
+}
+
