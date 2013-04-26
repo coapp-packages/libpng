@@ -12,6 +12,10 @@ call :build Win32 Release v110
 call :build Win32 Debug v110
 call :build x64 Release v110
 call :build x64 Debug v110
+call :build Win32 "Release Library" v110
+call :build Win32 "Debug Library" v110
+call :build x64 "Release Library" v110
+call :build x64 "Debug Library" v110
 endlocal
 
 setlocal
@@ -20,6 +24,10 @@ call :build Win32 Release v100
 call :build Win32 Debug v100
 call :build x64 Release v100
 call :build x64 Debug v100
+call :build Win32 "Release Library" v100
+call :build Win32 "Debug Library" v100
+call :build x64 "Release Library" v100
+call :build x64 "Debug Library" v100
 endlocal
 
 cd ..
@@ -31,6 +39,14 @@ call :test Win32 Release v100
 call :test Win32 Debug v100
 call :test x64 Release v100
 call :test x64 Debug v100
+call :test Win32 "Release Library" v110
+call :test Win32 "Debug Library" v110
+call :test x64 "Release Library" v110
+call :test x64 "Debug Library" v110
+call :test Win32 "Release Library" v100
+call :test Win32 "Debug Library" v100
+call :test x64 "Release Library" v100
+call :test x64 "Debug Library" v100
 cd COPKG
 
 if "__NOCLEAN__"=="true" goto :eof
@@ -43,8 +59,8 @@ goto :eof
 
 :test
 if "__FAILED__"=="true" goto eof
-projects\vstudio\%3\%1\%2\pngtest.exe || goto :failed
-projects\vstudio\%3\%1\%2\pngvalid.exe || goto :failed
+"projects\vstudio\%3\%1\%~2\pngtest.exe" || goto :failed
+"projects\vstudio\%3\%1\%~2\pngvalid.exe" || goto :failed
 goto :eof
 :failed
 set __FAILED__=true
