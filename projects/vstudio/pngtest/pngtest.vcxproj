@@ -103,34 +103,50 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Library|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Library|x64'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Library|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Library|x64'">
     <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets />
+    <OutDir>$(SolutionDir)$(PlatformToolset)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformToolset)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
