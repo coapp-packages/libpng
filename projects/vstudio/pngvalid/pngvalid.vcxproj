@@ -431,7 +431,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\contrib\libtests\pngvalid.c" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\zlib.redist.1.2.7.28\build\native\zlib.redist.targets" Condition="Exists('..\packages\zlib.redist.1.2.7.28\build\native\zlib.redist.targets')" />
+    <Import Project="..\packages\zlib.1.2.7.28\build\native\zlib.targets" Condition="Exists('..\packages\zlib.1.2.7.28\build\native\zlib.targets')" />
   </ImportGroup>
 </Project>
