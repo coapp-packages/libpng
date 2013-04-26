@@ -32,6 +32,6 @@
 	 versions do not match.  The zlib version used in this build is recorded
 	 below:
      -->
-    <ZLibSrcDir>$(ProgramData)\include\zlib</ZLibSrcDir>
+    <ZLibSrcDir>..\..\..\..\zlib-1.2.5</ZLibSrcDir>
   </PropertyGroup>
 </Project>
