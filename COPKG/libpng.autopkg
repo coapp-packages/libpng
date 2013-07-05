@@ -117,7 +117,7 @@ Homepage: http://www.libpng.org/pub/png/libpng.html";
 
 	dependencies {
 		packages : {
-			zlib/1.2.7.32
+			zlib/1.2.8.6
 		};
 	}
 
