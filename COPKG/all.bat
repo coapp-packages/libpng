@@ -5,6 +5,17 @@ if "%1"=="clean" goto :clean
 if "%1"=="noclean" (
 	set __NOCLEAN__=true
 	shift)
+setlocal
+call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
+call :build Win32 Release v120
+call :build Win32 Debug v120
+call :build x64 Release v120
+call :build x64 Debug v120
+call :build Win32 "Release Library" v120
+call :build Win32 "Debug Library" v120
+call :build x64 "Release Library" v120
+call :build x64 "Debug Library" v120
+endlocal
 
 setlocal
 call "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\vcvarsall.bat" x86
@@ -31,6 +42,10 @@ call :build x64 "Debug Library" v100
 endlocal
 
 cd ..
+call :test Win32 Release v120
+call :test Win32 Debug v120
+call :test x64 Release v120
+call :test x64 Debug v120
 call :test Win32 Release v110
 call :test Win32 Debug v110
 call :test x64 Release v110
@@ -39,6 +54,10 @@ call :test Win32 Release v100
 call :test Win32 Debug v100
 call :test x64 Release v100
 call :test x64 Debug v100
+call :test Win32 "Release Library" v120
+call :test Win32 "Debug Library" v120
+call :test x64 "Release Library" v120
+call :test x64 "Debug Library" v120
 call :test Win32 "Release Library" v110
 call :test Win32 "Debug Library" v110
 call :test x64 "Release Library" v110
@@ -76,4 +95,8 @@ rd /s /q ..\projects\vstudio\libpng\v110
 rd /s /q ..\projects\vstudio\pnglibconf\v110
 rd /s /q ..\projects\vstudio\pngtest\v110
 rd /s /q ..\projects\vstudio\pngvalid\v110
+rd /s /q ..\projects\vstudio\libpng\v120
+rd /s /q ..\projects\vstudio\pnglibconf\v120
+rd /s /q ..\projects\vstudio\pngtest\v120
+rd /s /q ..\projects\vstudio\pngvalid\v120
 
