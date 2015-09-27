@@ -5,6 +5,9 @@ if "%1"=="clean" goto :clean
 if "%1"=="noclean" (
 	set __NOCLEAN__=true
 	shift)
+
+nuget restore ..\projects\vstudio\vstudio.sln
+
 setlocal
 call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
 call :build Win32 Release v120
