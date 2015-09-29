@@ -9,66 +9,30 @@ if "%1"=="noclean" (
 nuget restore ..\projects\vstudio\vstudio.sln
 
 setlocal
+call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
+call :build Win32 Release v140
+call :build Win32 Debug v140
+call :build x64 Release v140
+call :build x64 Debug v140
+endlocal
+
+setlocal
 call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
 call :build Win32 Release v120
 call :build Win32 Debug v120
 call :build x64 Release v120
 call :build x64 Debug v120
-call :build Win32 "Release Library" v120
-call :build Win32 "Debug Library" v120
-call :build x64 "Release Library" v120
-call :build x64 "Debug Library" v120
-endlocal
-
-setlocal
-call "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\vcvarsall.bat" x86
-call :build Win32 Release v110
-call :build Win32 Debug v110
-call :build x64 Release v110
-call :build x64 Debug v110
-call :build Win32 "Release Library" v110
-call :build Win32 "Debug Library" v110
-call :build x64 "Release Library" v110
-call :build x64 "Debug Library" v110
-endlocal
-
-setlocal
-call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat" x86
-call :build Win32 Release v100
-call :build Win32 Debug v100
-call :build x64 Release v100
-call :build x64 Debug v100
-call :build Win32 "Release Library" v100
-call :build Win32 "Debug Library" v100
-call :build x64 "Release Library" v100
-call :build x64 "Debug Library" v100
 endlocal
 
 cd ..
+call :test Win32 Release v140
+call :test Win32 Debug v140
+call :test x64 Release v140
+call :test x64 Debug v140
 call :test Win32 Release v120
 call :test Win32 Debug v120
 call :test x64 Release v120
 call :test x64 Debug v120
-call :test Win32 Release v110
-call :test Win32 Debug v110
-call :test x64 Release v110
-call :test x64 Debug v110
-call :test Win32 Release v100
-call :test Win32 Debug v100
-call :test x64 Release v100
-call :test x64 Debug v100
-call :test Win32 "Release Library" v120
-call :test Win32 "Debug Library" v120
-call :test x64 "Release Library" v120
-call :test x64 "Debug Library" v120
-call :test Win32 "Release Library" v110
-call :test Win32 "Debug Library" v110
-call :test x64 "Release Library" v110
-call :test x64 "Debug Library" v110
-call :test Win32 "Release Library" v100
-call :test Win32 "Debug Library" v100
-call :test x64 "Release Library" v100
-call :test x64 "Debug Library" v100
 cd COPKG
 
 if "__NOCLEAN__"=="true" goto :eof
@@ -90,16 +54,12 @@ echo tests failed for %1 %2 %3
 goto :eof
 
 :clean
-rd /s /q ..\projects\vstudio\libpng\v100
-rd /s /q ..\projects\vstudio\pnglibconf\v100
-rd /s /q ..\projects\vstudio\pngtest\v100
-rd /s /q ..\projects\vstudio\pngvalid\v100
-rd /s /q ..\projects\vstudio\libpng\v110
-rd /s /q ..\projects\vstudio\pnglibconf\v110
-rd /s /q ..\projects\vstudio\pngtest\v110
-rd /s /q ..\projects\vstudio\pngvalid\v110
 rd /s /q ..\projects\vstudio\libpng\v120
 rd /s /q ..\projects\vstudio\pnglibconf\v120
 rd /s /q ..\projects\vstudio\pngtest\v120
 rd /s /q ..\projects\vstudio\pngvalid\v120
+rd /s /q ..\projects\vstudio\libpng\v140
+rd /s /q ..\projects\vstudio\pnglibconf\v140
+rd /s /q ..\projects\vstudio\pngtest\v140
+rd /s /q ..\projects\vstudio\pngvalid\v140
 

@@ -1,5 +1,13 @@
 @import @"version.inc";
 
+configurations {
+	UserPlatformToolset {
+	    // Needed because autopackage lacks VS2015 support
+        	key = "PlatformToolset";
+        	choices: "v120,v140";
+	};
+}
+
 nuget {
 	nuspec {
 		id = libpng;
@@ -34,131 +42,59 @@ Homepage: http://www.libpng.org/pub/png/libpng.html";
 			..\*.h,
 		};
 
+		[Win32,v140,dynamic,release] {
+			lib: { ..\projects\vstudio\v140\win32\Release\libpng15.lib };
+			bin: { ..\projects\vstudio\v140\win32\Release\libpng15.dll };
+			symbols: { ..\projects\vstudio\v140\win32\Release\libpng15.pdb };
+		}
+
 		[Win32,v120,dynamic,release] {
 			lib: { ..\projects\vstudio\v120\win32\Release\libpng15.lib };
 			bin: { ..\projects\vstudio\v120\win32\Release\libpng15.dll };
 			symbols: { ..\projects\vstudio\v120\win32\Release\libpng15.pdb };
 		}
 
-		[Win32,v110,dynamic,release] {
-			lib: { ..\projects\vstudio\v110\win32\Release\libpng15.lib };
-			bin: { ..\projects\vstudio\v110\win32\Release\libpng15.dll };
-			symbols: { ..\projects\vstudio\v110\win32\Release\libpng15.pdb };
-		}
     
-		[Win32,v100,dynamic,release] {
-			lib: { ..\projects\vstudio\v100\win32\Release\libpng15.lib };
-			bin: { ..\projects\vstudio\v100\win32\Release\libpng15.dll };
-			symbols: { ..\projects\vstudio\v100\win32\Release\libpng15.pdb };
+		[x64,v140,dynamic,release] {
+			lib: { ..\projects\vstudio\v140\x64\Release\libpng15.lib };
+			bin: { ..\projects\vstudio\v140\x64\Release\libpng15.dll };
+			symbols: { ..\projects\vstudio\v140\x64\Release\libpng15.pdb };
 		}
-
     
 		[x64,v120,dynamic,release] {
 			lib: { ..\projects\vstudio\v120\x64\Release\libpng15.lib };
 			bin: { ..\projects\vstudio\v120\x64\Release\libpng15.dll };
 			symbols: { ..\projects\vstudio\v120\x64\Release\libpng15.pdb };
 		}
-    
-		[x64,v110,dynamic,release] {
-			lib: { ..\projects\vstudio\v110\x64\Release\libpng15.lib };
-			bin: { ..\projects\vstudio\v110\x64\Release\libpng15.dll };
-			symbols: { ..\projects\vstudio\v110\x64\Release\libpng15.pdb };
-		}
-    
-		[x64,v100,dynamic,release] {
-			lib: { ..\projects\vstudio\v100\x64\Release\libpng15.lib };
-			bin: { ..\projects\vstudio\v100\x64\Release\libpng15.dll };
-			symbols: { ..\projects\vstudio\v100\x64\Release\libpng15.pdb };
-		}
-    
-		[Win32,v120,static,release] {
-			lib: { ..\projects\vstudio\v120\win32\Release Library\libpng15.lib };
-		}
-    
-		[Win32,v110,static,release] {
-			lib: { ..\projects\vstudio\v110\win32\Release Library\libpng15.lib };
-		}
-    
-		[Win32,v100,static,release] {
-			lib: { ..\projects\vstudio\v100\win32\Release Library\libpng15.lib };
-		}
-    
-		[x64,v120,static,release] {
-			lib: { ..\projects\vstudio\v120\x64\Release Library\libpng15.lib };
-		}
-    
-		[x64,v110,static,release] {
-			lib: { ..\projects\vstudio\v110\x64\Release Library\libpng15.lib };
-		}
-    
-		[x64,v100,static,release] {
-			lib: { ..\projects\vstudio\v100\x64\Release Library\libpng15.lib };
-		}
 
+		[Win32,v140,dynamic,debug] {
+			lib: { ..\projects\vstudio\v140\win32\Debug\libpng15.lib };
+			bin: { ..\projects\vstudio\v140\win32\Debug\libpng15.dll };
+			symbols: { ..\projects\vstudio\v140\win32\Debug\libpng15.pdb };
+		}
+    
 		[Win32,v120,dynamic,debug] {
 			lib: { ..\projects\vstudio\v120\win32\Debug\libpng15.lib };
 			bin: { ..\projects\vstudio\v120\win32\Debug\libpng15.dll };
 			symbols: { ..\projects\vstudio\v120\win32\Debug\libpng15.pdb };
 		}
-    
-		[Win32,v110,dynamic,debug] {
-			lib: { ..\projects\vstudio\v110\win32\Debug\libpng15.lib };
-			bin: { ..\projects\vstudio\v110\win32\Debug\libpng15.dll };
-			symbols: { ..\projects\vstudio\v110\win32\Debug\libpng15.pdb };
-		}
-    
-		[Win32,v100,dynamic,debug] {
-			lib: { ..\projects\vstudio\v100\win32\Debug\libpng15.lib };
-			bin: { ..\projects\vstudio\v100\win32\Debug\libpng15.dll };
-			symbols: { ..\projects\vstudio\v100\win32\Debug\libpng15.pdb };
-		}
 
+		[x64,v140,dynamic,debug] {
+			lib: { ..\projects\vstudio\v140\x64\Debug\libpng15.lib };
+			bin: { ..\projects\vstudio\v140\x64\Debug\libpng15.dll };
+			symbols: { ..\projects\vstudio\v140\x64\Debug\libpng15.pdb };
+		}
+        
 		[x64,v120,dynamic,debug] {
 			lib: { ..\projects\vstudio\v120\x64\Debug\libpng15.lib };
 			bin: { ..\projects\vstudio\v120\x64\Debug\libpng15.dll };
 			symbols: { ..\projects\vstudio\v120\x64\Debug\libpng15.pdb };
 		}
-        
-		[x64,v110,dynamic,debug] {
-			lib: { ..\projects\vstudio\v110\x64\Debug\libpng15.lib };
-			bin: { ..\projects\vstudio\v110\x64\Debug\libpng15.dll };
-			symbols: { ..\projects\vstudio\v110\x64\Debug\libpng15.pdb };
-		}
-    
-		[x64,v100,dynamic,debug] {
-			lib: { ..\projects\vstudio\v100\x64\Debug\libpng15.lib };
-			bin: { ..\projects\vstudio\v100\x64\Debug\libpng15.dll };
-			symbols: { ..\projects\vstudio\v100\x64\Debug\libpng15.pdb };
-		}
-    
-		[Win32,v120,static,debug] {
-			lib: { ..\projects\vstudio\v120\win32\Debug Library\libpng15.lib };
-		}
-    
-		[Win32,v110,static,debug] {
-			lib: { ..\projects\vstudio\v110\win32\Debug Library\libpng15.lib };
-		}
-    
-		[Win32,v100,static,debug] {
-			lib: { ..\projects\vstudio\v100\win32\Debug Library\libpng15.lib };
-		}
-    
-		[x64,v120,static,debug] {
-			lib: { ..\projects\vstudio\v120\x64\Debug Library\libpng15.lib };
-		}
-    
-		[x64,v110,static,debug] {
-			lib: { ..\projects\vstudio\v110\x64\Debug Library\libpng15.lib };
-		}
-    
-		[x64,v100,static,debug] {
-			lib: { ..\projects\vstudio\v100\x64\Debug Library\libpng15.lib };
-		}
 	};
 
 	dependencies {
 		packages : {
-			zlib/1.2.8.7
+			zlib/1.2.8.8
 		};
 	}
 
