@@ -47,6 +47,8 @@ goto :eof
 if "__FAILED__"=="true" goto eof
 "projects\vstudio\%3\%1\%~2\pngtest.exe" || goto :failed
 "projects\vstudio\%3\%1\%~2\pngvalid.exe" || goto :failed
+"projects\vstudio\%3\%1\%~2\pngstest.exe" --strict --log contrib/pngsuite/basn0g01.png contrib/pngsuite/basn0g02.png contrib/pngsuite/basn0g04.png contrib/pngsuite/basn0g08.png contrib/pngsuite/basn0g16.png contrib/pngsuite/basn2c08.png contrib/pngsuite/basn2c16.png contrib/pngsuite/basn3p01.png contrib/pngsuite/basn3p02.png contrib/pngsuite/basn3p04.png contrib/pngsuite/basn3p08.png contrib/pngsuite/basn4a08.png contrib/pngsuite/basn4a16.png contrib/pngsuite/basn6a08.png contrib/pngsuite/basn6a16.png contrib/pngsuite/ftbbn0g01.png contrib/pngsuite/ftbbn0g02.png contrib/pngsuite/ftbbn0g04.png contrib/pngsuite/ftbbn2c16.png contrib/pngsuite/ftbbn3p08.png contrib/pngsuite/ftbgn2c16.png contrib/pngsuite/ftbgn3p08.png contrib/pngsuite/ftbrn2c08.png contrib/pngsuite/ftbwn0g16.png contrib/pngsuite/ftbwn3p08.png contrib/pngsuite/ftbyn3p08.png contrib/pngsuite/ftp0n0g08.png contrib/pngsuite/ftp0n2c08.png contrib/pngsuite/ftp0n3p08.png contrib/pngsuite/ftp1n3p08.png || goto :failed
+"projects\vstudio\%3\%1\%~2\pngunknown.exe" --strict --default pngtest.png || goto :failed
 goto :eof
 :failed
 set __FAILED__=true
