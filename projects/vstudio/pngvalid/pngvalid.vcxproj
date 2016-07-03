@@ -186,7 +186,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -222,7 +222,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -259,7 +259,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -292,7 +292,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>false</FunctionLevelLinking>
@@ -324,7 +324,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BrowseInformation>true</BrowseInformation>
@@ -363,7 +363,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BrowseInformation>true</BrowseInformation>
@@ -403,7 +403,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BrowseInformation>true</BrowseInformation>
@@ -439,7 +439,7 @@
       <AdditionalIncludeDirectories>..\..\..\scripts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4127</DisableSpecificWarnings>
       <CompileAsManaged>false</CompileAsManaged>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BrowseInformation>true</BrowseInformation>
