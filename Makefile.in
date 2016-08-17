@@ -104,7 +104,7 @@ check_PROGRAMS = pngtest$(EXEEXT) pngunknown$(EXEEXT) \
 	pngstest$(EXEEXT) pngvalid$(EXEEXT) pngimage$(EXEEXT) \
 	$(am__EXEEXT_1)
 @HAVE_CLOCK_GETTIME_TRUE@am__append_1 = timepng
-bin_PROGRAMS = pngfix$(EXEEXT) png-fix-itxt$(EXEEXT)
+bin_PROGRAMS = pngcp$(EXEEXT) pngfix$(EXEEXT) png-fix-itxt$(EXEEXT)
 @PNG_ARM_NEON_TRUE@am__append_2 = arm/arm_init.c\
 @PNG_ARM_NEON_TRUE@	arm/filter_neon.S arm/filter_neon_intrinsics.c
 
@@ -197,6 +197,9 @@ PROGRAMS = $(bin_PROGRAMS)
 am_png_fix_itxt_OBJECTS = contrib/tools/png-fix-itxt.$(OBJEXT)
 png_fix_itxt_OBJECTS = $(am_png_fix_itxt_OBJECTS)
 png_fix_itxt_LDADD = $(LDADD)
+am_pngcp_OBJECTS = contrib/tools/pngcp.$(OBJEXT)
+pngcp_OBJECTS = $(am_pngcp_OBJECTS)
+pngcp_DEPENDENCIES = libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@.la
 am_pngfix_OBJECTS = contrib/tools/pngfix.$(OBJEXT)
 pngfix_OBJECTS = $(am_pngfix_OBJECTS)
 pngfix_DEPENDENCIES = libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@.la
@@ -265,14 +268,14 @@ am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@_la_SOURCES) \
 	$(nodist_libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@_la_SOURCES) \
-	$(png_fix_itxt_SOURCES) $(pngfix_SOURCES) $(pngimage_SOURCES) \
-	$(pngstest_SOURCES) $(pngtest_SOURCES) $(pngunknown_SOURCES) \
-	$(pngvalid_SOURCES) $(timepng_SOURCES)
+	$(png_fix_itxt_SOURCES) $(pngcp_SOURCES) $(pngfix_SOURCES) \
+	$(pngimage_SOURCES) $(pngstest_SOURCES) $(pngtest_SOURCES) \
+	$(pngunknown_SOURCES) $(pngvalid_SOURCES) $(timepng_SOURCES)
 DIST_SOURCES =  \
 	$(am__libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@_la_SOURCES_DIST) \
-	$(png_fix_itxt_SOURCES) $(pngfix_SOURCES) $(pngimage_SOURCES) \
-	$(pngstest_SOURCES) $(pngtest_SOURCES) $(pngunknown_SOURCES) \
-	$(pngvalid_SOURCES) $(timepng_SOURCES)
+	$(png_fix_itxt_SOURCES) $(pngcp_SOURCES) $(pngfix_SOURCES) \
+	$(pngimage_SOURCES) $(pngstest_SOURCES) $(pngtest_SOURCES) \
+	$(pngunknown_SOURCES) $(pngvalid_SOURCES) $(timepng_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -680,6 +683,8 @@ timepng_LDADD = libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@.la
 pngfix_SOURCES = contrib/tools/pngfix.c
 pngfix_LDADD = libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@.la
 png_fix_itxt_SOURCES = contrib/tools/png-fix-itxt.c
+pngcp_SOURCES = contrib/tools/pngcp.c
+pngcp_LDADD = libpng@PNGLIB_MAJOR@@PNGLIB_MINOR@.la
 
 # Generally these are single line shell scripts to run a test with a particular
 # set of parameters:
@@ -937,6 +942,12 @@ contrib/tools/png-fix-itxt.$(OBJEXT): contrib/tools/$(am__dirstamp) \
 png-fix-itxt$(EXEEXT): $(png_fix_itxt_OBJECTS) $(png_fix_itxt_DEPENDENCIES) $(EXTRA_png_fix_itxt_DEPENDENCIES) 
 	@rm -f png-fix-itxt$(EXEEXT)
 	$(AM_V_CCLD)$(LINK) $(png_fix_itxt_OBJECTS) $(png_fix_itxt_LDADD) $(LIBS)
+contrib/tools/pngcp.$(OBJEXT): contrib/tools/$(am__dirstamp) \
+	contrib/tools/$(DEPDIR)/$(am__dirstamp)
+
+pngcp$(EXEEXT): $(pngcp_OBJECTS) $(pngcp_DEPENDENCIES) $(EXTRA_pngcp_DEPENDENCIES) 
+	@rm -f pngcp$(EXEEXT)
+	$(AM_V_CCLD)$(LINK) $(pngcp_OBJECTS) $(pngcp_LDADD) $(LIBS)
 contrib/tools/pngfix.$(OBJEXT): contrib/tools/$(am__dirstamp) \
 	contrib/tools/$(DEPDIR)/$(am__dirstamp)
 
@@ -1055,6 +1066,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@contrib/libtests/$(DEPDIR)/pngvalid.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@contrib/libtests/$(DEPDIR)/timepng.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@contrib/tools/$(DEPDIR)/png-fix-itxt.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@contrib/tools/$(DEPDIR)/pngcp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@contrib/tools/$(DEPDIR)/pngfix.Po@am__quote@
 
 .S.o:
@@ -2110,6 +2122,7 @@ contrib/libtests/timepng.o: pnglibconf.h
 
 contrib/tools/makesRGB.o: pnglibconf.h
 contrib/tools/pngfix.o: pnglibconf.h
+contrib/tools/pngcp.o: pnglibconf.h
 
 .c.out:
 	rm -f $@ $*.tf[12]
