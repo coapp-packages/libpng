@@ -22,7 +22,7 @@ nuget {
 		summary: "libpng is a library for reading and writing PNG images.";
 		description: @"libpng is a library for reading and writing PNG images.
 Homepage: http://www.libpng.org/pub/png/libpng.html";
-		releaseNotes: "Release of libpng 1.6.25 libraries.";
+		releaseNotes: "Release of libpng 1.6.26 libraries.";
 		copyright: Copyright 2013;
 		tags: { png, native, CoApp, v120, v140 };
 
